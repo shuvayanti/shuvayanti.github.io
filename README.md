@@ -1,4 +1,3 @@
 # shuvayanti.github.io
-Personal webpage
 
-This is the beginning of my personal webpage. Stay Tuned!
+This my personal webpage where I am documenting my journey on different topics In am interested in Speech Technology. 
