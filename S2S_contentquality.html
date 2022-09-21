@@ -1,5 +1,5 @@
 A cascaded system seems to be performing better than a direct speech-to-speech translation system. It can be seen in their respective BLEU scores.
-
+<p>
 <table>
   <tr>
     <td>Cascaded system</td>
@@ -12,15 +12,15 @@ A cascaded system seems to be performing better than a direct speech-to-speech t
     <td>39.9</td>
   </tr>
 </table>
-
+</p>
 This is solely bacause current MT systms can translate sentences better than current direct speech-to-speech translation systems. 
-<br> 
+<p> 
 In order to reduce the gap between the translation quality in cascaded system and direct S2S system, I would try and disentangle linguistic information from 
 speaker information. I would attempt to map the linguistics of the source and target language in the syllable (discrete units) granularity. This could potentially 
 reduce the number of parameters required to be mapped and also achieve the level of translation quality compared to an MT system. I can also leverage upon context and 
 predict a sequence of syllables(discrete units) given the source language syllable and previous syllables in the target language. This should potentially improve the 
 quality of the synthesis in terms of content.
-
+</p>
 <h3>Previous work</h3>
 Disentagling linguistic content from speaker chracteristics or prosodic information has been attempted before in direct speech-to-speech transaltion systems in order to 
 utilise the modelling techniques of MT. Experiemnts in <a href="https://arxiv.org/pdf/2107.05604.pdf">Lee et.all</a>, show that the performance of their direct system can
