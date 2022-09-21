@@ -2,14 +2,17 @@ I haven't seen the issue of speaker similarity being addressed in speech transla
 in source and target speaker. That is because speaker information is lost at the transcription stage when the text is obtained from the ASR system. 
 
 <h3>Previous work</h3>
+<p>
 The work in <a href="https://www.pure.ed.ac.uk/ws/portalfiles/portal/15101393/Speaker_adaptation.pdf>Wester et.al.</a> published in 2010, peformed speaker adaptation in a
 cross-lingual setting. They also address an important factor in evaluating speaker similarity across languages is whether the listner is able to distinguish between speakers
 in a language they are unfamiliar with. And turns out that language familiarity plays a huge role in determining speaker similarity. 
+</p>
 <p>
 In <a href="https://arxiv.org/pdf/1904.06037.pdf">Translatotron</a> paired source and target recordings is used to perform cross-lingual voice transfer. They did it by
 synthesizing the target speech dataset by a single English speaker female voice. They also verified information leakage from speaker embedding by conditioning ground-truth
 targets and random targets. Experimental results show that in terms of BLEU they are pretty close suggesting that information leakage is not a concern. They also pointed
 out that severely low MOS scores of source utterance suggest english speaker embeddings doesn't genralise well with spanish speaker embeddings.
+</p>
 <hr>
 <p>
 If I had to solve it I would take a parallel speaker encoder to encode speaker characteristics like speaker ID, speaking rate. I would not try to encode prosody because 
