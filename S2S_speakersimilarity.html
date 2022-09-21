@@ -1,10 +1,20 @@
 I haven't seen the issue of speaker similarity being addressed in speech translation yet. Although most of the samples from recent works show there is a stark difference
-in source and target speaker. 
+in source and target speaker. That is because speaker information is lost at the transcription stage when the text is obtained from the ASR system. 
 
+<h3>Previous work</h3>
+The work in <a href="https://www.pure.ed.ac.uk/ws/portalfiles/portal/15101393/Speaker_adaptation.pdf>Wester et.al.</a> published in 2010, peformed speaker adaptation in a
+cross-lingual setting. They also address an important factor in evaluating speaker similarity across languages is whether the listner is able to distinguish between speakers
+in a language they are unfamiliar with. And turns out that language familiarity plays a huge role in determining speaker similarity. 
+<p>
+In <a href="https://arxiv.org/pdf/1904.06037.pdf">Translatotron</a> paired source and target recordings is used to perform cross-lingual voice transfer. They did it by
+synthesizing the target speech dataset by a single English speaker female voice. They also verified information leakage from speaker embedding by conditioning ground-truth
+targets and random targets. Experimental results show that in terms of BLEU they are pretty close suggesting that information leakage is not a concern. They also pointed
+out that severely low MOS scores of source utterance suggest english speaker embeddings doesn't genralise well with spanish speaker embeddings.
+<hr>
 <p>
 If I had to solve it I would take a parallel speaker encoder to encode speaker characteristics like speaker ID, speaking rate. I would not try to encode prosody because 
 prosody cannot be mapped across languages. It is extremely difficult to encode only some of the characteristics of a speaker and silence the others. In this case, I only 
-want information on gender, speaking rate to be marked as speaker identity. I amnot interested in information like their accent, flow, prosody of the utterances.
+want information on gender, speaking rate to be marked as speaker identity. I am not interested in information like their accent, flow, prosody of the utterances.
 I would try to extract speaker x-vectors and and perform a clustering to determine which dimensions represent the wanted and unwanted information and use weights to amplify
 to obtain the information I need. The modified x-vector representation can then be used to learn a latent space to enocde the speaker information needed.
 </p>
