@@ -25,5 +25,17 @@ prosodies from a reference speech by sampling prosodies from the Gaussian compon
 method with GMM-based MDN not only achieves significantly better diversity than using a single Gaussian in both single-speaker and multispeaker TTS, but also provides 
 better naturalness. The prosody cloning experiments demonstrate that the prosody similarity of the proposed method with GMM-based MDN is comparable to recent
 proposed fine-grained VAE while the target speaker similarity is better. 
-  
+<br>
+They used MCD as a measure to find out the distance between ground-truth phone-level prososdies and utterance-level prosodies. As expected phone-level prosodies produced
+lower MCD as phone-level prossody representation contain more information about phone pronounciation than utterance-leve prosody representation in both single-speaker 
+and multi-speaker systems. It was discovered that PLP(phone-level prosody modelling)-GMM produced better prosody diversity than PLP-SG(single gaussian) because a 
+sequence of phone-level embeddings depicts the prosody more precisely than an utterance-level embedding Gaussian mixtures can better model the phone-level prosody
+embeddings than a single Gaussian. 
+<br>
+The MUSHRA score of PLP-GMM is 25.3% and 8.6% higher than PLP-SG on single-speaker and multi-speaker task respectively with p-value<0.05. It was found that global prosody
+representation provided limited information on phone-level prosody and was too coarse to precisely control the synthesis. Phone-level prosodies were controlled using 
+specified Gaussian indices.
+</p>
+<p>
+<a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9414413'>Hodari et.al</a>
 </p>
