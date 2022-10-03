@@ -4,6 +4,10 @@ semantically meaningful sentences in addition to expressing the same emotion in 
 mapped across langauges as different languages have different way of expressing the same emotion in addition to being context dependent. It has been highlighted in 
 AMTA2022 where a keynote speaker presented an example from Squid Game (company <i>Translated</i>; tool <i>Matesub</i>), the synthesis sounded unnatural. 
 </p>
+<p>
+Prosody Modelling - 
+Controllable speech synthesis - 
+</p>
 <hr>
 <h2>Proposed solution</h2>
 
@@ -55,4 +59,25 @@ which represents attribute groups (e.g. clean/noisy) and provides interpretabili
 which characterizes specific attribute configurations (e.g. noise level, speaking rate) and enables disentangled fine-grained control over these attributes. 
 This amounts to using a Gaussian mixture model (GMM) for the latent distribution. Their model is capable of inferring speaker and style attributes from a noisy 
 utterance and synthesize clean speech with controllable speaking styles.
+</p>
+<p>
+<a href='https://arxiv.org/pdf/1910.01709.pdf'>Habib et.al</a> provided partial supervision to some of the latent variables and were able to force the latent variables
+to take on consistent and interpretable purposes. Their model is able to reliably discover and control important but rarely labelled attributes of speech, such as 
+affect and speaking rate, with as little as 1% (30 minutes) supervision and didnot observe any degradation os synthesis comapred to SOTA baselines.
+</p>
+<p>
+<a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9362069'>Li et.al</a>
+</p>
+<p>
+<a href='https://arxiv.org/pdf/2009.06775.pdf'>Raitio et.al</a>
+</p>
+<p>
+  <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9003829'>Zhu et.al</a>
+</p>
+<p>
+  <a href='https://arxiv.org/pdf/2009.08474.pdf'>Hono et.al</a>
+</p>
+<p>
+<a href='https://www.researchgate.net/profile/Zack-Hodari/publication/327388881_Learning_Interpretable_Control_Dimensions_for_Speech_Synthesis_by_Using_External_Data/links/5d0374ed92851c874c651372/Learning-Interpretable-Control-Dimensions-for-Speech-Synthesis-by-Using-External-Data.pdf'>Hodari et.al</a>
+
 </p>
