@@ -37,5 +37,15 @@ representation provided limited information on phone-level prosody and was too c
 specified Gaussian indices.
 </p>
 <p>
-<a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9414413'>Hodari et.al</a>
+<a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9414413'>Hodari et.al</a> provides an introduction to CAMP to address 1) slower rate of prosody variation,
+2)determination of prosody without sufficient context. To mitigate the challenge of modelling a slow-varying signal, prosodic information is learned on word-level
+representation(stage 1). To alleviate the ill-posed nature of prosody modelling, syntactic and semantic information derived from text is used to learn a 
+contextdependent prior over our prosodic space(stage 2). Replacing attention with a jointly trained duration model helps improve prosody.
+<br>
+The duration model is trained jointly and shares a phone encoder with the acoustic decoder. Thus, the phone embeddings are influenced by both acoustic and duration
+losses, in turn providing richer inputs to the duration model at inference time. The duration model trained in stage-1 uses phone embeddings and disentangled prosody 
+representation (upsampled to phone-level) as input. This ensures the representation can capture duration-related information.
+</p>
+<p>
+ 
 </p>
