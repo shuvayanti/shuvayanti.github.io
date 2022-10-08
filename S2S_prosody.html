@@ -93,7 +93,11 @@ producing a system that can reliably discover attributes of speech we wish to co
 prosody and allow control over speaking rate, fundamental frequency (F0) variation and affect, a problem of interest to the speech community for well over two decades.
 3)To embue TTS models with control over affect, F0 and speaking rate whilst still maintaining prosodic variation when sampling.
 <br>
-
+Their generative model consists of an autoregressive distribution over a sequence of acoustic features, x, that are generated conditioned on a sequence of text, y, 
+and on two latent variables z<sub>s</sub> & z<sub>u</sub>. The latent variables can be discrete or continuous. z<sub>s</sub> represents the variations in prosody that 
+they seek to control and is semi-supervised. z<sub>u</sub> is fully unobserved and represents latent variations in prosody (intonation, rhythm, stress) that they wish 
+to model but not explicitly control. Once trained, their model can be used to synthesize acoustic features from text. They condition each of the latent variables by 
+concatenating the vectors z<sub>u</sub> and z<sub>s</sub> to the representation of the text-encoder, before the application of the attention mechanism.
 </p>
 <p>
 <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9362069'>Li et.al</a>
