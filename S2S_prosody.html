@@ -60,11 +60,40 @@ which represents attribute groups (e.g. clean/noisy) and provides interpretabili
 which characterizes specific attribute configurations (e.g. noise level, speaking rate) and enables disentangled fine-grained control over these attributes. 
 This amounts to using a Gaussian mixture model (GMM) for the latent distribution. Their model is capable of inferring speaker and style attributes from a noisy 
 utterance and synthesize clean speech with controllable speaking styles.
+<br>
+The proposed GMVAE-Tacotron was evaluated on four datasets, spanning a wide degree of variations in speaker, recording channel conditions, background noise, prosody, 
+and speaking styles.
+<br>
+They discovered that there were individual dimensions controlling F0, speaking rate, accent, length of starting silence, noise levels, etc. demonstrating the 
+disentangled nature of the learned latent attribute representation. 
+<br> 
+To test the whether GMVAE was able to synthesize clean speech, they compared it with basline, 16-token GST and a VAE variant which replaces the GMM prior with an 
+isotropic Gaussian using MOS and SNR. To encourage synthesis of clean audio under each model they manually selected the cleanest token (weight=0.15) for GST, used the 
+Gaussian prior mean (i.e. a zero vector) for VAE, and the mean of a clean component for GMVAE. For the VAE model, the mean captured the average condition, which still
+exhibited a moderate level of noise, resulting in a lower SNR and MOS. The generated speech from the GST was cleaner, however raters sometimes found its prosody to be 
+unnatural. Note that it is possible that another token would obtain a different trade-off between prosody and SNR, and using multiple tokens could improve both. 
+Finally, the proposed model synthesized both natural and high-quality speech, with the highest MOS and SNR.
+<br>
+To generate expressive TTS they controlled prosody and speaking style. The results show that the prior already captured a common prosody, which could be used to 
+synthesize more naturally sounding speech with a lower variance compared to the baseline.
+<br>
+One primary advantage of the proposed model is that it supports random sampling of natural speech from the prior. GMVAE-Tacotron learns a representation which 
+disentangles attributes like  speaking rate, rhythm, and F0, enabling them to be controlled independently. Specifically, latent dimensions in the proposed model are 
+conditionally independent, while token weights of GST are in fact correlated. 
 </p>
 <p>
 <a href='https://arxiv.org/pdf/1910.01709.pdf'>Habib et.al</a> provided partial supervision to some of the latent variables and were able to force the latent variables
 to take on consistent and interpretable purposes. Their model is able to reliably discover and control important but rarely labelled attributes of speech, such as 
-affect and speaking rate, with as little as 1% (30 minutes) supervision and didnot observe any degradation os synthesis comapred to SOTA baselines.
+affect and speaking rate, with as little as 1% (30 minutes) supervision and didnot observe any degradation os synthesis comapred to SOTA baselines. They reference to
+models developed by Hsu et.al(2018) mentioning that, the models are formally non-identifiable and this implies that repeated training runs will not reliably discover 
+the same latent attributes. Even if they did, a lengthy human post-processing stage is necessary to identify what the model has learned on any given training run. 
+In order to be of practical use for control, it is not enough for the models to discover latent attributes, they need to do so reliably and in a way that is robust to 
+random initialization and to changes in the model. There core contributions are 1) To combine semi-supervised latent variable models with Neural TTS systems, 
+producing a system that can reliably discover attributes of speech we wish to control. 2) To demonstrate that as little as 1% supervision can be sufficient to improve 
+prosody and allow control over speaking rate, fundamental frequency (F0) variation and affect, a problem of interest to the speech community for well over two decades.
+3)To embue TTS models with control over affect, F0 and speaking rate whilst still maintaining prosodic variation when sampling.
+<br>
+
 </p>
 <p>
 <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9362069'>Li et.al</a>
