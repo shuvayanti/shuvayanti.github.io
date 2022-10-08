@@ -5,13 +5,22 @@ mapped across langauges as different languages have different way of expressing 
 AMTA2022 where a keynote speaker presented an example from Squid Game (company <i>Translated</i>; tool <i>Matesub</i>), the synthesis sounded unnatural. 
 </p>
 <p>
-<b>Prosody Modelling</b> - 
+The outcome of both prosody modelling and controllable speech synthesis is the ability to produce speech with better expressivity. However, there are a few differences
+in how both of them a approached and evaluated. 
+<b>Prosody Modelling</b> - Modelling linguistic functions like stress, intonation, rhythm, etc. Different systems are compared and evaluation is done mostly with MUSHRA.
 <br>
-<b>Controllable speech synthesis</b> - 
+<b>Controllable speech synthesis</b> - Controlling different aspects like F0, speaking rate, accent, emotion, etc. Evaluation is done mostly using MOS. 
 </p>
 <hr>
 <h2>Proposed solution</h2>
-
+I think controllable TTS provides more control over the variations on the outcome of the synthesized speech. The aim is to produce a variation of expressive synthesised
+speech utterance that is able to align well with human perception. From the previous works, it looks like GMM-based VAE-Tacotron frameworks well to disentangle speech features
+like F0, speaking rate, accent, length of silence , noise levels. Hsu et. al were also able to prove that different dimensions were in control of these aspects seperately
+with minimal corelation. And the use of GMM also enables a human-in-the-loop to control the output of the synthesized speech and modify its prosody/expressivity to
+produce a quality synthesis as post-processing. However, for more autonomy over the process I would prefer a context-dependent cross-utterance encoder based on 
+sentence embeddings extracted from pretrained BERT model and augment the input to Tacotron. Xu et.al tried this approach to achieve a variation in pitch and duration
+of the keywords in different scenarios, indicating change in prosody. However, this does increases the complexity of the system and it could prove to be a small 
+improvement over the main approach.
 <hr>
 <h2>Previous work</h2>
 <h3>Prosody modelling in TTS</h3>
@@ -100,18 +109,32 @@ to model but not explicitly control. Once trained, their model can be used to sy
 concatenating the vectors z<sub>u</sub> and z<sub>s</sub> to the representation of the text-encoder, before the application of the attention mechanism.
 </p>
 <p>
-<a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9362069'>Li et.al</a>
+In <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9362069'>Li et.al</a>, they used an emotion embedding space to transfer emotion from source to target.
+However, transferred emotion is not accurate, expressive enough with emotion category confusions. Moreover, it is hard to select an appropriate reference to deliver
+desired emotion strength. Hence, they propose an architecture based on Tacotron, 1) they plug two emotion classifiers – one after the reference encoder, one after the
+decoder output – to enhance the emotion-discriminative ability of the emotion embedding and the predicted mel-spectrum. 2) they adopt style loss to measure the 
+difference between the generated and reference mel-spectrum. The emotion strength in the synthetic speech was controlled by adjusting the value of the emotion 
+embedding as the emotion embedding can be viewed as the feature map of the mel-spectrum. <a href='https://silyfox.github.io/iscslp-98-demo/'>samples</a>
 </p>
 <p>
-<a href='https://arxiv.org/pdf/2009.06775.pdf'>Raitio et.al</a>
-</p>
-<p>
-  <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9003829'>Zhu et.al</a>
-</p>
-<p>
-  <a href='https://arxiv.org/pdf/2009.08474.pdf'>Hono et.al</a>
-</p>
-<p>
-<a href='https://www.researchgate.net/profile/Zack-Hodari/publication/327388881_Learning_Interpretable_Control_Dimensions_for_Speech_Synthesis_by_Using_External_Data/links/5d0374ed92851c874c651372/Learning-Interpretable-Control-Dimensions-for-Speech-Synthesis-by-Using-External-Data.pdf'>Hodari et.al</a>
-
+<a href='https://arxiv.org/pdf/2009.06775.pdf'>Raitio et.al</a> trained a sequence-to-sequence neural network conditioned on acoustic speech features to learn a latent
+prosody space with intuitive and meaningful dimensions. Their experiments show that a model conditioned on sentencewise pitch, pitch range, phone duration, energy, 
+and spectral tilt can effectively control each prosodic dimension and generate a wide variety of speaking styles, while maintaining similar mean opinion score (4.23) 
+to Tacotron baseline (4.26). 
+<br>
+Their approach has the benefit of guiding the model to learn only perceptually relevant acoustic differences that contribute to prosody. They predict the acoustic 
+features directly from the encoder outputs, but with a more focused set of prosodic features, which enables direct and intuitive control over each prosodic dimension.
+They extended the baseline architecture by introducing a prosody encoder that predicts prosodic features from the encoder outputs.
+<br>
+3 trained models : 1)Baseline, 2) prosody 36h -  prosody control model trained with the 36-hour dataset. 3) Prosody 52h -  prosody control model trained with the 
+36-hour dataset combined with the 16-h conversational dataset for better prosodic coverage.
+Prosody 36h performed comparable to baseline.
+<br>
+There some benefits - disentangled prosodic dimensions, prosodic features are intuitive, prosodic features are independent from other acoustic factors such as 
+background noise or other recordings conditions. 
+<br>
+On the downside, the proposed model only provides sentence-level prosody control, and is lacking finer-grained control. The model can be used for synthesizing any 
+text with appropriate style, provided with enough training data for the text and style. However, they failed to achieve an overall better speech naturalness in 
+comparison to our baseline system; sometimes the prosody was evaluated less natural in the AB test, indicating less stable prosody prediction for some text inputs
+and target style.
 </p>
