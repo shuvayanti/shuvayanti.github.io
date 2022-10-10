@@ -12,7 +12,7 @@ to obtain the information I need. The modified x-vector representation can then 
 <hr>
 <h3>Previous work</h3>
 <p>
-The work in <a href="https://www.pure.ed.ac.uk/ws/portalfiles/portal/15101393/Speaker_adaptation.pdf">Wester et.al.</a> published in 2010, peformed speaker adaptation in a
+The work in <a href="https://www.pure.ed.ac.uk/ws/portalfiles/portal/15101393/Speaker_adaptation.pdf">Wester et.al.</a> published in 2010, performed speaker adaptation in a
 cross-lingual setting. They also address an important factor in evaluating speaker similarity across languages is whether the listner is able to distinguish between speakers
 in a language they are unfamiliar with. And turns out that language familiarity plays a huge role in determining speaker similarity. 
 </p>
@@ -22,4 +22,14 @@ synthesizing the target speech dataset by a single English speaker female voice.
 targets and random targets. Experimental results show that in terms of BLEU they are pretty close suggesting that information leakage is not a concern. They also pointed
 out that severely low MOS scores of source utterance suggest english speaker embeddings doesn't genralise well with spanish speaker embeddings.
 </p>
-
+<p>
+Speaker voice preservation in <a href='https://arxiv.org/pdf/2107.08661.pdf'>Translatron2</a> was achieved by modifying the PnG NAT TTS model by incorporating a 
+separately trained speaker encoder in the same way as in Jia et al.(2018), and trained it on the LibriTTS corpus. 
+<br>
+Theoritically translatotron2 is also capable of preserving voice in complicated scenarios such as speaker turns. To enable direct S2ST models to preserve
+each speaker’s voice for input with speaker turns, they augmented the training data by randomly sampling pairs of training examples and concatenating the source 
+speech, the target speech, and the target phoneme sequences to construct new training examples. The resulting new examples contain two speakers’ voices in both the 
+source and the target speech, which enables the model to learn on examples with speaker turns. Such augmentation does not only enable the model to learn voice 
+retention on speaker turns, but also increases the diversity of the speech content as well as the complexity of the acoustic conditions in the training examples, 
+which may further improve the translation quality of the model, especially on small datasets.
+</p>
