@@ -1,7 +1,14 @@
-I haven't seen the issue of speaker similarity being addressed in speech translation yet. Although most of the samples from recent works show there is a stark difference
-in source and target speaker. That is because speaker information is lost at the transcription stage when the text is obtained from the ASR system. 
+Speaker similarity has been addressed in direct speech translation and efforts have made to retain speaker charcateristics in the final translation. However, there is
+still room for improvement (listenning to the voice samples from Translatotron2 and Meta). The samples sound muffled and stretched instead of being relaxed.
+<br>
+The issue of retaining speaker characteristics in the output of the translated content hasn't been addressed in a cascaded speech translation system. That is because
+there is no way of preserving speaker characteristics once the speech is converted to text by the ASR system.
 <hr>
 <h3>Proposed solution</h3>
+<p>
+The following solution is mostly focussing on retaining speaker characteristics and reproducing the same in the output of a cascaded system as the problem seems to be
+more pronounced there.
+</p>
 <p>
 If I had to solve it I would take a parallel speaker encoder to encode speaker characteristics like speaker ID, speaking rate. I would not try to encode prosody because 
 prosody cannot be mapped across languages. It is extremely difficult to encode only some of the characteristics of a speaker and silence the others. In this case, I only 
@@ -9,6 +16,9 @@ want information on gender, speaking rate to be marked as speaker identity. I am
 I would try to extract speaker x-vectors and and perform a clustering to determine which dimensions represent the wanted and unwanted information and use weights to amplify
 to obtain the information I need. The modified x-vector representation can then be used to learn a latent space to enocde the speaker information needed.
 </p>
+<p>
+Retention and measurment of speaker similarity has been addressed in <a href='https://arxiv.org/pdf/1810.07217.pdf'>Hsu et.al</a> in addition to controllable 
+TTS. Their approach is based on GMM-VAE Tacotron.
 <hr>
 <h3>Previous work</h3>
 <p>
