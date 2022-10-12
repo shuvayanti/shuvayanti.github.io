@@ -2,8 +2,8 @@
 <html>
   <body>
 <p> 
-This is an important factor in speaker characteristics that need to incorporated in speech translations. It influneces the perceived prosody of the target synthesis and
-in turn ifluences the naturalness a lot. 
+This is an important factor in speaker characteristics that need to incorporated in speech translations for the purpose of dubbing. It influneces the perceived naturalness
+of the target synthesis and in turn influences the viewing experience a lot. 
 </p>
  <hr>
 <h2>Proposed solution</h2>
@@ -12,7 +12,12 @@ Since this is part of speaker characteristics, I think my approach in learning s
 will work only for direct speech-to-speech translation system.
 </p>
 <p>
-For cascaded system, this has to modelled with prosody/controllable TTS with human-in-the-loop for better user experience. 
+For cascaded system, the works in <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9414966'>Virkar et.al</a> can be applied for now as they have not only
+improved their methodology but also showeed the statistical significance of their model improvements. I still have doubts of the reproducibility of this work on langauges
+that are from different families. In this work they have only worked with european language ( en, fr, de, it, es) which are from the same familiy. I would like to see if
+this model peforms equally well in isochrony score and cross-lingual semantic match score. Because speaking rates could differ in languages of different families to 
+reproduce similar semantics and viewing experience. They do suggest that the relaxations on the isochrony score helped them mitigate high & low speaking rates to improve
+viewing experience.
 </p>  
 <hr>
 <h2>Previous work</h2> 
