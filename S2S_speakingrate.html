@@ -29,7 +29,26 @@ compared to the baseline. However, the audio rendering system was preferred by b
 aspects (i.e. applause’s, audience laughs in jokes,etc.) and acoustic conditions (i.e. reverberation, ambient noise, etc.). 
 </p>
 <p>
-Continuing the provious work and with improvements, <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9414966'>Virkar et.al</a> 
+Continuing the provious work and with improvements, <a href='https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9414966'>Virkar et.al</a> evaluate the following
+features:
+<br>1. Language model score of target break point - probability of a break between 2 consequtive target words. 
+<br>2. Cross-lingual semantic match score across source and target segments. - cosine similarity between the encoding of the source and target phrases.
+<br>3. Speaking rate variation across target segments. 
+<br>4. Speaking rate match across source and target segments.
+<br>5. Isochrony score for left and right relaxations. - a relaxation mechanism ( soft margins) are introduced to improve the viewing experience.
+<br>
+They found that relaxations do not help to improve accuracy but only improve fluency and smoothness. Hence, to find the optimal feature weights for the new model(C) 
+they opted for a two-step optimization procedure in 2 steps:
+<br>1. Find optimal weights by maximizing average accuracy. This is equivalent to training the previous model.
+<br>2. Find the optimal weight by maximizing average smoothness by keeping the segmentation obtained in step 1.
+<br>
+Results of automatic evaluation show that the new model with relaxations improve on fluency and smoothness compared to their previous work(as expected) without compromising on accuracy
+becuas eof the 2-step optimization process. They note that compared to using positive relaxations, the addition of negative relaxations improves fluency and 
+smoothness on average across all languages(en,fr,es,de,it). 
+<br>
+Results of human evaluation show that the current model outperfoms their previous work with prosodic alignment by a large margin on all the languages and for it & es
+languages they found no statistically significant difference with the Reference. But for fr & de the new model significantly outperforms the Reference because the performance
+of smoothness is statistically significant and for de all 3 (smoothness, fluency, accuracy) were significant.
 </p>
   </body>
 </html>
