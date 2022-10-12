@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <body>
+
 <p> 
 This is an important factor in speaker characteristics that need to incorporated in speech translations for the purpose of dubbing. It influneces the perceived naturalness
 of the target synthesis and in turn influences the viewing experience a lot. 
@@ -21,11 +19,6 @@ viewing experience.
 </p>  
 <hr>
 <h2>Previous work</h2> 
-<p>
-This work from Amazon AI by <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9747158">Effendi et.al</a> addresses the issue of <it>isochrony</it> because
-dubbed speech has to match the timing and pauses of the original audio and video. Their experimental results show that new models improve or match the performance of 
-prosodic alignment and significantly enhance neural TTS speech quality for both slow and fast speaking rates.
-</p>
 <p>
 The work in <a href='https://arxiv.org/pdf/2001.06785.pdf'>Federico et.al </a> proposes enhancing their machine translation model (target forcing neural machine translation)
 to produce output at a preferred length, a prosodic alignmment segment to match the distribution of pauses with words, an audio rendering system to recreate the background
@@ -55,5 +48,8 @@ Results of human evaluation show that the current model outperfoms their previou
 languages they found no statistically significant difference with the Reference. But for fr & de the new model significantly outperforms the Reference because the performance
 of smoothness is statistically significant and for de all 3 (smoothness, fluency, accuracy) were significant.
 </p>
-  </body>
-</html>
+<p>
+From the previous work, a duration model was added to the prosodic alignment(PA) model in <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9747158">Effendi et.al</a>
+to speed up PA model training and inference (100x) while mostly improving or matching the performance for both it and es.
+</p>
+ 
